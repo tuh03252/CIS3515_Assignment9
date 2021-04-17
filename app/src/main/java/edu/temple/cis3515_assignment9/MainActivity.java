@@ -26,10 +26,6 @@ public class MainActivity extends AppCompatActivity implements BookListFragment.
     boolean twoPane;
     BookDetailsFragment bookDetailsFragment;
     Book selectedBook;
-    private final String TAG_BOOKLIST = "booklist", TAG_BOOKDETAILS = "bookdetails";
-    private final String KEY_SELECTED_BOOK = "selectedBook";
-    private final String KEY_BOOKLIST = "searchedook";
-    private final int BOOK_SEARCH_REQUEST_CODE = 123;
     BookList bookList;
     ControlFragment controlFragment;
     boolean isConnected;
@@ -42,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements BookListFragment.
     Intent intent;
     private static final String BOOK_PROGRESS = "bookProgress";
     private static final String BOOK_DURATION = "bookDuration";
-    private static final String BOOK_LIST = "bookslisted";
+    private static final String BOOK_LIST = "list";
     AudiobookService.MediaControlBinder mediaControlBinder;
 
     ServiceConnection serviceConnection = new ServiceConnection() {
@@ -152,17 +148,17 @@ public class MainActivity extends AppCompatActivity implements BookListFragment.
             bookDetailsFragment = new BookDetailsFragment();
             controlFragment = new ControlFragment();
 
-            if(intent.hasExtra("bookslisted")){
+            if(intent.hasExtra("list")){
                 Bundle extras = getIntent().getExtras();
-                bookList = extras.getParcelable("bookslisted");
+                bookList = extras.getParcelable("list");
             }
             fm.beginTransaction().replace(R.id.container_1, BookListFragment.newInstance(bookList)).replace(R.id.container_2, BookDetailsFragment.newInstance(selectedBook)).replace(R.id.addition2, ControlFragment.newInstance(selectedBook)).commit();
         }
         else
         {
-            if(intent.hasExtra("bookslisted")){
+            if(intent.hasExtra("list")){
                 Bundle extras = getIntent().getExtras();
-                bookList = extras.getParcelable("bookslisted");
+                bookList = extras.getParcelable("list");
             }
             fm.beginTransaction().replace(R.id.container_1, BookListFragment.newInstance(bookList)).commit();
         }

@@ -42,7 +42,7 @@ public class BooksAdapter extends BaseAdapter {
             Inflate a predefined layout file that includes 2 text views.
             We could do this in code, but this seems a little easier
              */
-            convertView = LayoutInflater.from(context).inflate(R.layout.books_adapter_layout, parent, false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.fragment_book_details, parent, false);
         }
 
         titleTextView = convertView.findViewById(R.id.titleTextView);
